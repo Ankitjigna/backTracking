@@ -29,7 +29,8 @@ public class NQueens{
 
         // base
         if(row == board.length){
-            printBoard(board);
+            // printBoard(board);
+            count++;
             return;
         }
         //column loop
@@ -51,6 +52,7 @@ public class NQueens{
             System.out.println();
         }
     }
+    static int count = 0;
     public static void main(String args[]){
         int n = 4;
         char board[][] = new char[n][n];
@@ -61,5 +63,6 @@ public class NQueens{
             }
         }
         nQueens(board ,0);
+        System.out.println("total ways to solve n queens problem =" +" " + count);
     }
 }
