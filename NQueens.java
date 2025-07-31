@@ -25,22 +25,25 @@ public class NQueens{
 
         return true;
     }
-    public static void nQueens(char board[][] , int row){
+    public static boolean nQueens(char board[][] , int row){
 
         // base
         if(row == board.length){
             // printBoard(board);
             count++;
-            return;
+            return true;
         }
         //column loop
         for(int j=0; j<board.length; j++){
             if(isSafe(board, row ,j)){
                 board[row][j] = 'Q';
-                nQueens(board , row+1);  //fn call
+                if(nQueens(board , row+1)){
+                    return true;
+                }  
                 board[row][j] = 'x'; // backtracking
             }
         }
+        return false;
     }
 
     public static void printBoard(char board[][]){
@@ -54,7 +57,7 @@ public class NQueens{
     }
     static int count = 0;
     public static void main(String args[]){
-        int n = 4;
+        int n = 5;
         char board[][] = new char[n][n];
          // intialize
         for(int i=0;i<n;i++){
@@ -62,7 +65,12 @@ public class NQueens{
                 board[i][j] = 'x';
             }
         }
-        nQueens(board ,0);
-        System.out.println("total ways to solve n queens problem =" +" " + count);
+        if(nQueens(board ,0)){
+            System.out.println("solution is possible");
+            printBoard(board);
+        }else{
+            System.out.println("solution is not  possible");
+        }
+        // System.out.println("total ways to solve n queens problem =" +" " + count);
     }
 }
